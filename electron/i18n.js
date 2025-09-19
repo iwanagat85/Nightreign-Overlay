@@ -1,14 +1,13 @@
 const i18next = require('i18next');
 const Backend = require('i18next-fs-backend');
-const LanguageDetector = require('i18next-electron-language-detector');
 const { app } = require('electron');
 
-async function initI18n() {
+async function initI18n(defaultLang = 'en') {
   return i18next
     .use(Backend)
-    .use(LanguageDetector)
     .init({
       debug: true,
+      lng: defaultLang,
       fallbackLng: 'en',
       preload: ['en', 'ja'],
       backend: {

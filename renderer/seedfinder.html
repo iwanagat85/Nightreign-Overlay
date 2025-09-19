@@ -37,6 +37,19 @@
         background: #2563eb;
         border-color: #1d4ed8;
       }
+      .sels {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-top: 6px;
+      }
+      .sels select {
+          background: #1f2937;
+          color: #e5e7eb;
+          border: 1px solid #374151;
+          border-radius: 6px;
+          padding: 6px 10px;
+      }
       .hint {
         color: #9ca3af;
       }
@@ -60,6 +73,9 @@
 
         <div style="margin-top: 10px"><b>Choose Shifting Earth</b></div>
         <div class="btns" id="mapBtns"></div>
+
+        <div style="margin-top: 10px"><b>Choose Language</b></div>
+        <div class="sels" id="langSlct"></div>
 
         <hr />
         <div class="hint">

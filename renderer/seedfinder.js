@@ -1,6 +1,17 @@
 (() => {
   'use strict';
 
+  const SP_LANGS = [
+    {
+      label: 'English',
+      value: 'en',
+    },
+    {
+      label: 'Japanese',
+      value: 'ja',
+    },
+  ];
+
   const NL_ORDER = [
     'Gladius',
     'Adel',
@@ -19,6 +30,7 @@
 
   const nlBtns = document.getElementById('nlBtns');
   const mapBtns = document.getElementById('mapBtns');
+  const langSlct = document.getElementById('langSlct');
   const statusEl = document.getElementById('status');
   const countEl = document.getElementById('count');
   const candEl = document.getElementById('cand');
@@ -76,7 +88,9 @@
     for (const n of NL_ORDER) {
       if (list.includes(n)) {
         const b = document.createElement('button');
-        b.textContent = await window.i18n.t(`Nightlord.${n}`);
+        const key = `Nightlord.${n}`
+        b.setAttribute('data-i18n', key);
+        b.textContent = await window.i18n.t(key);
         b.onclick = async () => {
           try {
             await selectNightlord(n);
@@ -90,7 +104,9 @@
 
     for (const m of MAP_ORDER) {
       const b = document.createElement('button');
-      b.textContent = await window.i18n.t(`Map.${m}`);
+      const key = `Map.${m}`
+      b.setAttribute('data-i18n', key);
+      b.textContent = await window.i18n.t(key);
       b.onclick = async () => {
         try {
           await selectMap(m);
@@ -100,6 +116,16 @@
       };
       mapBtns.appendChild(b);
     }
+
+    const s = document.createElement('select')
+    for (const l of SP_LANGS){
+      const el = document.createElement('option');
+      el.textContent = l.label;
+      el.value = l.value;
+      s.appendChild(el);
+    }
+    s.value = await window.i18n.getLanguage();
+    langSlct.appendChild(s);
   }
 
   async function selectNightlord(nl) {
@@ -387,6 +413,26 @@
     } else {
       prunePatterns();
     }
+  });
+
+  async function refreshTranslations() {
+    const nlBtns = window.document.querySelectorAll('#nlBtns button');
+    for (const btn of nlBtns) {
+      const key = btn.getAttribute('data-i18n');
+      btn.textContent = await window.i18n.t(key);
+    }
+
+    const mapBtns = window.document.querySelectorAll('#mapBtns button');
+    for (const btn of mapBtns) {
+      const key = btn.getAttribute('data-i18n');
+      btn.textContent = await window.i18n.t(key);
+    }
+  }
+
+  langSlct.addEventListener('change', async (e) => {
+    const lang = e.target.value;
+    await window.i18n.changeLanguage(lang);
+    refreshTranslations();
   });
 
   loadData();

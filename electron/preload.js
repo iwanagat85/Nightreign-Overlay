@@ -2,7 +2,8 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld("i18n", {
   t: (key) => ipcRenderer.invoke('i18n:t', key),
-  changeLanguage: (lng) => ipcRenderer.invoke('i18n:changeLanguage', lng)
+  changeLanguage: (lng) => ipcRenderer.invoke('i18n:changeLanguage', lng),
+  getLanguage: () => ipcRenderer.invoke('i18n:getLanguage'),
 });
 contextBridge.exposeInMainWorld('seedAPI', {
   sendSelected: (p) => ipcRenderer.send('seed:selected', p) });

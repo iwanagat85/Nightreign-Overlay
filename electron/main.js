@@ -179,8 +179,14 @@ ipcMain.handle('i18n:changeLanguage', async (event, lng) => {
   return true;
 });
 
+ipcMain.handle('i18n:getLanguage', () => {
+  return i18next.language;
+});
+
 app.whenReady().then(async () => {
-  await initI18n();
+  const locale = app.getLocale();
+  const lang = locale.split('-')[0];
+  await initI18n(lang);
 
   const display = screen.getPrimaryDisplay();
   createOverlay(display);
