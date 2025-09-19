@@ -74,7 +74,7 @@
     drawLabel(x, y, text, styleKey, ui);
   }
 
-  function render() {
+  async function render() {
     if (typeof dprSetupCanvas !== 'function') {
       console.error(
         '[overlay] dprSetupCanvas missing — ensure uv_runtime.js is loaded before overlay.js'
@@ -112,18 +112,22 @@
     }
 
     if (p.night1?.poi_id && p.night1.boss !== 'empty') {
-      drawPoi(p.night1.poi_id, 'Night 1: ' + p.night1.boss, 'night', ui);
+      const boss = await window.i18n.t(`Boss.${p.night1.boss}`);
+      drawPoi(p.night1.poi_id, 'Night 1: ' + boss, 'night', ui);
     }
     if (p.night2?.poi_id && p.night2.boss !== 'empty') {
-      drawPoi(p.night2.poi_id, 'Night 2: ' + p.night2.boss, 'night', ui);
+      const boss = await window.i18n.t(`Boss.${p.night2.boss}`);
+      drawPoi(p.night2.poi_id, 'Night 2: ' + boss, 'night', ui);
     }
 
     for (const eg of p.evergaols || []) {
-      if (eg.poi_id && eg.boss !== 'empty') drawPoi(eg.poi_id, eg.boss, 'evergaol', ui);
+      const boss = await window.i18n.t(`Boss.${eg.boss}`);
+      if (eg.poi_id && eg.boss !== 'empty') drawPoi(eg.poi_id, boss, 'evergaol', ui);
     }
 
     for (const fb of p.field_bosses || []) {
-      if (fb.poi_id && fb.boss !== 'empty') drawPoi(fb.poi_id, fb.boss, 'field-boss', ui);
+      const boss = await window.i18n.t(`Boss.${fb.boss}`);
+      if (fb.poi_id && fb.boss !== 'empty') drawPoi(fb.poi_id, boss, 'field-boss', ui);
     }
 
     if (Array.isArray(p.special_events)) {
@@ -146,7 +150,8 @@
           const display = sr.value.startsWith(SORC_PREFIX)
             ? sr.value.substring(SORC_PREFIX.length)
             : sr.value;
-          drawPoi(sr.poi_id, display, 'sorcerer-rise', ui);
+          const sorcerers_rises = await window.i18n.t(`Sorcerer's Rise.${display}`);
+          drawPoi(sr.poi_id, sorcerers_rises, 'sorcerer-rise', ui);
         }
       }
     }
@@ -154,7 +159,8 @@
     if (Array.isArray(p.castle)) {
       for (const c of p.castle) {
         if (c.poi_id && c.boss && c.boss !== 'empty') {
-          drawPoi(c.poi_id, c.boss, 'castle-boss', ui);
+          const boss = await window.i18n.t(`Boss.${c.boss}`);
+          drawPoi(c.poi_id, boss, 'castle-boss', ui);
         }
       }
     }

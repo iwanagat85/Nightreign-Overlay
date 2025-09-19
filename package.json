@@ -18,7 +18,10 @@
   "build": {
     "appId": "com.fahid.nightreign.overlay",
     "productName": "Nightreign Overlay",
-    "electronLanguages": ["en-US"],
+    "electronLanguages": [
+      "en-US",
+      "ja-JP"
+    ],
     "compression": "normal",
     "asar": true,
     "asarUnpack": [
@@ -48,7 +51,7 @@
         {
           "target": "portable"
         },
-        { 
+        {
           "target": "zip"
         }
       ],
@@ -57,5 +60,10 @@
     "extraMetadata": {
       "main": "electron/main.js"
     }
+  },
+  "dependencies": {
+    "i18next": "^25.5.2",
+    "i18next-electron-language-detector": "^0.0.10",
+    "i18next-fs-backend": "^2.6.0"
   }
 }

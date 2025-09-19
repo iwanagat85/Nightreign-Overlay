@@ -1,5 +1,6 @@
 const { app, BrowserWindow, globalShortcut, screen, ipcMain } = require('electron');
 const path = require('path');
+const { initI18n, i18next } = require('./i18n.js');
 
 const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) {
@@ -169,7 +170,18 @@ ipcMain.on('overlay:reset', () => {
   send(overlayWin, 'overlay:reset');
 });
 
-app.whenReady().then(() => {
+ipcMain.handle('i18n:t', (event, key, options) => {
+  return i18next.t(key, options);
+});
+
+ipcMain.handle('i18n:changeLanguage', async (event, lng) => {
+  await i18next.changeLanguage(lng);
+  return true;
+});
+
+app.whenReady().then(async () => {
+  await initI18n();
+
   const display = screen.getPrimaryDisplay();
   createOverlay(display);
   createFinder();

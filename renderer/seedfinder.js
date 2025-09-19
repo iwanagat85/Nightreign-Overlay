@@ -76,7 +76,7 @@
     for (const n of NL_ORDER) {
       if (list.includes(n)) {
         const b = document.createElement('button');
-        b.textContent = n;
+        b.textContent = await window.i18n.t(`Nightlord.${n}`);
         b.onclick = async () => {
           try {
             await selectNightlord(n);
@@ -90,7 +90,7 @@
 
     for (const m of MAP_ORDER) {
       const b = document.createElement('button');
-      b.textContent = m;
+      b.textContent = await window.i18n.t(`Map.${m}`);
       b.onclick = async () => {
         try {
           await selectMap(m);
