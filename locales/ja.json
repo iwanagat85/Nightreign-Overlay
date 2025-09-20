@@ -96,5 +96,24 @@
     "Unlit Candle": "灯りのない燭台",
     "Windy Trees": "草むら",
     "Withered Trees": "枯れ木"
+  },
+  "SpecialEvent": {
+    "Day 1 Extra Night Boss": "1日目 新たなる脅威",
+    "Day 1 Gnoster Plague": "1日目 襲撃 知性の蟲",
+    "Day 1 Libra Curse": "1日目 襲撃 調律の魔物",
+    "Day 1 Maris Bubbles": "1日目 襲撃 兆し",
+    "Day 1 Meteor Strike": "1日目 隕石",
+    "Day 1 Morgott Invasion": "1日目 襲撃 忌み鬼",
+    "Day 1 Night Horde": "1日目 夜の勢力",
+    "Day 2 Extra Night Boss": "2日目 新たなる脅威",
+    "Day 2 Gnoster Plague": "2日目 襲撃 知性の蟲",
+    "Day 2 Libra Curse": "2日目 襲撃 調律の魔物",
+    "Day 2 Maris Bubbles": "2日目 襲撃 兆し",
+    "Day 2 Meteor Strike": "2日目 隕石",
+    "Day 2 Morgott Invasion": "2日目 襲撃 忌み鬼",
+    "Day 2 Night Horde": "2日目 夜の勢力",
+    "Difficult Sorcerer's Rise": "古の魔術師塔",
+    "Frenzy Tower": "狂い火",
+    "Walking Mausoleum": "歩く霊廟"
   }
 }

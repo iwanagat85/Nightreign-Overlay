@@ -139,8 +139,9 @@
         const base = (ev.event || '').trim();
         if (!base && !hasExtra) continue;
 
-        const text = hasExtra ? (base ? `${base} — ${extra}` : extra) : base;
-        drawPoi(ev.poi_id, text, 'event', ui);
+        const key = hasExtra ? (base ? `${base} — ${extra}` : extra) : base;
+        const event = await window.i18n.t(`SpecialEvent.${key}`);
+        drawPoi(ev.poi_id, event, 'event', ui);
       }
     }
 
